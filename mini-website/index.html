@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urooj's Mini Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fdf6f0;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Navigation Bar */
+    nav {
+      background-color: #E6D6C6;
+      padding: 15px 30px;
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      z-index: 100;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #555;
+    }
+
+    section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 50px 20px;
+      min-height: 80vh;
+    }
+
+    /* Profile Card */
+    .profile-card {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 350px;
+    }
+
+    .profile-card img {
+      width: 120px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+
+    .profile-card p {
+      color: #555;
+      margin: 8px 0;
+    }
+
+    .profile-card a {
+      text-decoration: none;
+      color: white;
+      background-color: #E6D6C6;
+      padding: 8px 16px;
+      border-radius: 8px;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .profile-card a:hover {
+      background-color: #d1bfae;
+    }
+
+    /* To-Do App */
+    .todo-container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 320px;
+      text-align: center;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 70%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #E6D6C6;
+      cursor: pointer;
+      margin-left: 5px;
+    }
+
+    button:hover {
+      background-color: #d1bfae;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    li {
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    li.completed span {
+      text-decoration: line-through;
+      color: #999;
+    }
+
+    .delete-btn {
+      background: none;
+      border: none;
+      color: red;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .section-title {
+      margin-bottom: 30px;
+      font-size: 28px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#profile">Profile</a>
+    <a href="#todo">To-Do App</a>
+  </nav>
+
+  <!-- Profile Section -->
+  <section id="profile">
+    <div class="profile-card">
+      <img src="https://via.placeholder.com/120" alt="Profile Picture">
+      <h1>Urooj K</h1>
+      <p>Web Developer & Designer</p>
+      <p>Creating clean, functional websites</p>
+      <a href="mailto:urooj@example.com">Contact Me</a>
+    </div>
+  </section>
+
+  <!-- To-Do App Section -->
+  <section id="todo">
+    <h2 class="section-title">My To-Do List</h2>
+    <div class="todo-container">
+      <input type="text" id="taskInput" placeholder="Add new task">
+      <button onclick="addTask()">Add</button>
+      <ul id="taskList"></ul>
+    </div>
+  </section>
+
+  <script>
+    function addTask() {
+      const input = document.getElementById('taskInput');
+      const task = input.value.trim();
+      if(task === '') return;
+
+      const li = document.createElement('li');
+      const span = document.createElement('span');
+      span.textContent = task;
+
+      const deleteBtn = document.createElement('button');
+      deleteBtn.textContent = 'X';
+      deleteBtn.classList.add('delete-btn');
+
+      deleteBtn.addEventListener('click', () => li.remove());
+      li.addEventListener('click', () => li.classList.toggle('completed'));
+
+      li.appendChild(span);
+      li.appendChild(deleteBtn);
+      document.getElementById('taskList').appendChild(li);
+
+      input.value = '';
+    }
+  </script>
+
+</body>
+</html>
